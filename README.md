@@ -114,10 +114,14 @@ For a fair comparison, all three models must be trained using the same training 
 A typical implementation uses Python and Scikit-learn. The data can be divided using the train_test_split() function. Stratification can be used to ensure that all three flower species are proportionally represented in the training and testing sets. 
 For Logistic Regression and KNN, the feature values can be standardized using StandardScaler. A pipeline can be used so that preprocessing and model training are performed consistently. 
 After training, predictions are generated using the test dataset. These predictions are then compared with the actual species labels. 
-The basic training process can be represented as: 
+The basic training process can be represented as:
+
 Dataset → Preprocessing → Train-Test Split → Model Training → Prediction → Evaluation 
+
 The training stage is important because the model's performance depends on how effectively it learns the patterns in the training data. 
-It is also important to avoid data leakage. Information from the testing dataset should not be used during model training or preprocessing parameter estimation. For example, the StandardScaler should be fitted only on the training data before transforming the test data. 
+It is also important to avoid data leakage. Information from the testing dataset should not be used during model training or preprocessing parameter estimation. 
+
+For example, the StandardScaler should be fitted only on the training data before transforming the test data. 
 After all three models have been trained, their predictions can be stored separately. This makes it possible to calculate the same evaluation metrics for each algorithm. 
 The models are not necessarily expected to perform identically. Logistic Regression creates a relatively simple decision boundary, Decision Tree creates rule-based boundaries, and KNN classifies observations according to their local neighbors. 
 The training process therefore allows each algorithm to learn the classification patterns using its own mathematical approach. The testing stage then determines how well these learned patterns generalize to unseen observations. 
@@ -135,95 +139,156 @@ The following algorithms were implemented:
 The Iris dataset was obtained directly from the Scikit-learn library. 
 ### 6.2 Importing Required Libraries 
 The first step is to import all the required Python libraries and machine learning functions. 
+
 Program 
+
 import pandas as pd 
 
 import matplotlib.pyplot as plt 
 
 from sklearn.datasets import load_iris 
+
 from sklearn.model_selection import train_test_split 
+
 from sklearn.preprocessing import StandardScaler 
+
 from sklearn.linear_model import LogisticRegression 
+
 from sklearn.tree import DecisionTreeClassifier 
+
 from sklearn.neighbors import KNeighborsClassifier 
+
 from sklearn.metrics import (accuracy_score, precision_score, recall_score, f1_score, confusion_matrix, classification_report) 
+
 Explanation 
-The load_iris() function is used to load the Iris dataset. The train_test_split() function divides the dataset into training and testing subsets. StandardScaler is used to standardize the numerical features. 
- 
+The load_iris() function is used to load the Iris dataset. The train_test_split() function divides the dataset into training and testing subsets. StandardScaler 
+is used to standardize the numerical features.  
 The three machine learning algorithms are imported from Scikit-learn. The evaluation functions are imported to calculate accuracy, precision, recall, F1-score, and confusion matrices. 
 ### 6.3 Loading the Dataset 
 The Iris dataset is loaded using the load_iris() function provided by Scikit-learn. 
-Program 
+
+Program
+
 iris = load_iris() 
+
 X = iris.data 
+
 y = iris.target 
+
 print("Dataset Shape:", X.shape) 
+
 print("Number of Classes:", len(iris.target_names)) 
+
 print("Classes:", iris.target_names) 
+
 Output 
+
 Dataset Shape: (150, 4) 
+
 Number of Classes: 3 
+
 Classes: ['setosa' 'versicolor' 'virginica'] 
+
 Explanation 
 The output shows that the dataset contains 150 observations and 4 input features. There are three target classes: Setosa, Versicolor, and Virginica. 
 The variable X contains the four input features, while y contains the corresponding species labels. 
 ### 6.4 Splitting the Dataset 
 The dataset is divided into training and testing datasets. In this project, 80% of the observations are used for training and 20% are used for testing. 
+
 Program 
+
 X_train, X_test, y_train, y_test = train_test_split( X, y, 
     test_size=0.20,    random_state=42,     stratify=y 
 ) 
+
 print("Training samples:", X_train.shape[0]) 
+
 print("Testing samples:", X_test.shape[0]) 
+
 Output 
+
 Training samples: 120 
+
 Testing samples: 30 
+
 Explanation 
 The dataset contains 150 observations. Therefore, 120 observations are used to train the machine learning models and 30 observations are reserved for testing. 
 The random_state=42 ensures that the same train-test split can be reproduced when the program is executed again. The stratify=y parameter maintains a similar class distribution in both training and testing datasets. 
 ### 6.5 Feature Scaling 
 Feature scaling is applied to the data used by Logistic Regression and KNN. Standardization transforms the features so that they have a similar scale. 
+
 Program 
+
 scaler = StandardScaler() 
+
 X_train_scaled = scaler.fit_transform(X_train) 
+
 X_test_scaled = scaler.transform(X_test) 
+
 print("Feature scaling completed successfully.") 
+
 Output 
+
 Feature scaling completed successfully. 
+
 Explanation 
 The StandardScaler standardizes the feature values using the mean and standard deviation of the training data. 
 Scaling is especially important for KNN because KNN calculates distances between observations. Logistic Regression can also benefit from standardized features. Decision Tree does not require feature scaling, so the original training and testing values are used for the Decision Tree model. 
 ### 6.6 Creating the Machine Learning Models 
 Three classification algorithms are created for the experiment. 
+
 Program 
+
 logistic_model = LogisticRegression(max_iter=200) 
+
 decision_tree_model = DecisionTreeClassifier(random_state=42) 
+
 knn_model=KNeighborsClassifier(n_neighbors=5) 
+
 print("Three models created successfully.") 
+
 Output 
+
 Three models created successfully. 
+
 Explanation 
 The first model is Logistic Regression. The second model is a Decision Tree Classifier. The third model is KNN with five nearest neighbors. 
 The same training and testing datasets are used for all three models to ensure a fair comparison. 
 ### 6.7 Training the Models 
 After creating the models, they are trained using the training dataset. 
+
 Program 
+
 Train Logistic Regression logistic_model.fit(X_train_scaled, y_train) 
+
 Train Decision Tree decision_tree_model.fit(X_train, y_train) 
+
 Train KNN knn_model.fit(X_train_scaled, y_train) print("All three models trained successfully.") 
+
 Output 
+
 All three models trained successfully. 
+
 Explanation 
 The fit() method is used to train each model. 
 Logistic Regression learns the relationship between the standardized input features and the flower species. The Decision Tree learns a series of decision rules based on feature values. KNN stores the training observations and uses their distances when making predictions. 
 ### 6.8 Making Predictions 
-After training, each model is used to predict the classes of the 30 unseen testing observations. Program 
+After training, each model is used to predict the classes of the 30 unseen testing observations. 
+
+Program 
+
 logistic_pred = logistic_model.predict(X_test_scaled) 
+
 decision_tree_pred = decision_tree_model.predict(X_test) 
+
 knn_pred = knn_model.predict(X_test_scaled) 
+
 print("Predictions generated successfully.") 
+
 Output 
+
 Predictions generated successfully. 
+
 Explanation 
 The predict() function generates the predicted species for each observation in the testing dataset. 
 The predictions from the three models are stored separately in the variables logistic_pred, decision_tree_pred, and knn_pred. 
@@ -237,11 +302,14 @@ The trained models are evaluated using four major classification metrics:
 These metrics provide a comprehensive understanding of the performance of each classification algorithm. 
 
 ### 7.1 Calculating Evaluation Metrics Program 
+
 results = [] models = { 
     "Logistic Regression": logistic_pred, 
  "Decision Tree": decision_tree_pred, 
     "KNN": knn_pred 
-} for model_name, predictions in models.items(): 
+}
+
+for model_name, predictions in models.items(): 
     accuracy = accuracy_score(y_test, predictions) 
     precision = precision_score( y_test, predictions, average="weighted") 
     recall = recall_score(y_test, predictions, average="weighted") 
@@ -249,6 +317,7 @@ results = [] models = {
     results.append([         model_name,         accuracy,         precision,         recall, 
         f1 
     ]) 
+
 results_df = pd.DataFrame( 
     results,     columns=[ 
         "Algorithm", 
@@ -258,22 +327,31 @@ results_df = pd.DataFrame(
         "F1-Score" 
     ] 
 ) 
+
 results_df[ 
     ["Accuracy", "Precision", "Recall", "F1-Score"] 
 ] = results_df[ 
     ["Accuracy", "Precision", "Recall", "F1-Score"] 
 ] * 100 
+
 print(results_df.round(2)) 
  
 ## 8. PERFORMANCE COMPARISON 
 The performance of the three algorithms is compared using accuracy, precision, recall, and F1score. 
+
 Output 
+
 A typical output for the specified train-test split is: 
+
 Performance Comparison Table 
-Algorithm 	          Accuracy 	Precision 	Recall 	F1-Score
-Logistic Regression 	  96.67%   	96.83%   	96.67%   96.67% 
-Decision Tree 	        93.33%    94.44%    93.33%   93.33% 
-KNN 	                 100.00%   100.00% 	 100.00% 	100.00% 
+
+    Algorithm 	          Accuracy 	Precision 	 Recall 	F1-Score
+
+    Logistic Regression 	96.67%     96.83%     96.67%     96.67% 
+
+    Decision Tree 	        93.33%     94.44%     93.33%     93.33% 
+
+    KNN 	                100.00%   100.00% 	 100.00% 	100.00% 
  
 Discussion 
 The comparison shows that all three machine learning algorithms perform well on the Iris dataset. Logistic Regression achieves an accuracy of 96.67%, while Decision Tree achieves 93.33%. KNN provides the highest accuracy at 100% for the selected test set. 
@@ -283,75 +361,129 @@ KNN achieves the highest performance. The algorithm classifies an observation ac
 The results indicate that KNN is the best-performing algorithm among the three models for this particular experimental setup. 
 ### 8.1 Accuracy Comparison Graph 
 A bar chart can be used to visually compare the accuracy of the three algorithms. 
-Program 
+
+Program
+
 plt.figure(figsize=(8, 5)) 
+
 plt.bar(results_df["Algorithm"], results_df["Accuracy"]) 
+
 plt.title("Accuracy Comparison of Machine Learning Algorithms") 
+
 plt.xlabel("Machine Learning Algorithm") 
+
 plt.ylabel("Accuracy (%)") 
+
 plt.ylim(80, 105) 
+
 plt.xticks(rotation=15) 
+
 plt.show() 
+
 Result 
 The graph contains three bars representing Logistic Regression, Decision Tree, and KNN. 
 The KNN bar is expected to be the highest because it achieves the highest accuracy among the three algorithms. 
 ### 8.2 Confusion Matrix 
 A confusion matrix is used to understand the number of correct and incorrect predictions made by each model. 
+
 Program 
+
 cm_logistic = confusion_matrix(y_test, logistic_pred) 
+
 cm_tree = confusion_matrix(y_test, decision_tree_pred) 
+
 cm_knn = confusion_matrix(y_test, knn_pred) 
+
 print("Logistic Regression Confusion Matrix:") 
+
 print(cm_logistic) 
+
 print("\nDecision Tree Confusion Matrix:") 
+
 print(cm_tree) 
+
 print("\nKNN Confusion Matrix:") 
+
 print(cm_knn) 
+
 Output 
+
 Logistic Regression Confusion Matrix: 
+
 [[10  0  0] 
+
  [ 0 10  0] 
+ 
  [ 0  1  9]] 
+ 
 Decision Tree Confusion Matrix: 
+
 [[10  0  0] 
+
  [ 0  9  1] 
+ 
  [ 0  1  9]] 
+
 KNN Confusion Matrix: 
+
 [[10  0  0] 
+
  [ 0 10  0] 
+ 
  [ 0  0 10]] 
+
 Interpretation 
 The diagonal values in a confusion matrix represent correctly classified observations. 
+
 For KNN, the confusion matrix is: 
+
 [[10  0  0] 
+
  [ 0 10  0] 
- [ 0  0 10]] 
+ 
+ [ 0  0 10]]
+ 
 This indicates that all 30 testing observations were correctly classified. 
 There are 10 Setosa observations, 10 Versicolor observations, and 10 Virginica observations in the testing dataset. KNN correctly classifies all of them in this particular experiment. 
 ### 8.3 Classification report  
 A classification report provides precision, recall, F1-score, and support for each individual class. Program 
+
 print("========== LOGISTIC REGRESSION ==========") 
+
+
 print(     classification_report(         y_test,         logistic_pred,         target_names=iris.target_names 
     ) 
 ) 
+
 print("========== DECISION TREE ==========") 
+
 print(     classification_report(         y_test,         decision_tree_pred,         target_names=iris.target_names 
     ) 
 ) 
+
 print("========== KNN ==========") 
+
 print(     classification_report(         y_test,         knn_pred,         target_names=iris.target_names 
     ) 
 ) 
+
 Output for KNN 
+
 ========== KNN ========== 
-              	 precision    recall  	 f1-score  	support 
-      setosa 	       1.00      1.00     	 1.00         	10 
-  versicolor 	       1.00      1.00        1.00         	10 
-   virginica 	       1.00      1.00        1.00         	10 
+
+                   precision  recall  	 f1-score    	support 
+      setosa 	     1.00      1.00        1.00         	10 
+
+    versicolor 	     1.00      1.00        1.00         	10 
+  
+    virginica 	     1.00      1.00        1.00         	10 
  
     accuracy                      	       1.00 	        30    
+    
     macro avg        1.00      1.00        1.00         	30 
+    
     weighted avg     1.00      1.00        1.00         	30 
+
 This result indicates that KNN correctly classified all three species in the test dataset. 
 Overall, the experiment successfully demonstrates the application and comparison of three classification algorithms. The models show that machine learning can effectively distinguish Iris flower species using simple physical measurements. 
  
@@ -368,7 +500,8 @@ The selection can be justified using the following criteria:
 2.	Strong precision across all three classes. 
 3.	Strong recall across all three classes. 
 4.	Highest or near-highest F1-score. 
-5.	Fewest classification errors in the confusion matrix. 
+5.	Fewest classification errors in the confusion matrix.
+
 If the actual Python results show that another algorithm has the highest performance, the best-performing algorithm section should be updated accordingly. 
 It is also important to recognize that the difference between models may be very small. For example, if Logistic Regression achieves 96.67% accuracy and KNN achieves 100%, the difference is only one correctly classified observation in a 30-observation test set. 
 For this reason, cross-validation could be used to determine whether the apparent performance difference is consistent across different subsets of the dataset. 
