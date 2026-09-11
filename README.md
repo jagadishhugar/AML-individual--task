@@ -21,11 +21,12 @@ The dataset selected for this project is the Iris Flower Dataset. It is a small 
 The dataset contains 150 observations representing iris flowers. These observations belong to three different species: 
 1.	Iris-setosa 
 2.	Iris-versicolor 
-3.	Iris-virginica 
+3.	Iris-virginica
+
 There are 50 observations for each species. Therefore, the dataset is balanced with respect to the target classes. 
 Each observation contains four numerical measurements. These measurements describe different physical characteristics of an iris flower. 
 Dataset Features 
-Feature 	Description 
+Feature 	    Description 
 Sepal Length 	Length of the sepal measured in centimetres
 Sepal Width 	Width of the sepal measured in centimetres 
 Petal Length 	Length of the petal measured in centimetres 
@@ -166,7 +167,9 @@ The random_state=42 ensures that the same train-test split can be reproduced whe
 Feature scaling is applied to the data used by Logistic Regression and KNN. Standardization transforms the features so that they have a similar scale. 
 Program 
 scaler = StandardScaler() 
-X_train_scaled = scaler.fit_transform(X_train) X_test_scaled = scaler.transform(X_test) print("Feature scaling completed successfully.") 
+X_train_scaled = scaler.fit_transform(X_train) 
+X_test_scaled = scaler.transform(X_test) 
+print("Feature scaling completed successfully.") 
 Output 
 Feature scaling completed successfully. 
 Explanation 
@@ -175,10 +178,9 @@ Scaling is especially important for KNN because KNN calculates distances between
 ### 6.6 Creating the Machine Learning Models 
 Three classification algorithms are created for the experiment. 
 Program 
-logistic_model = LogisticRegression(max_iter=200) decision_tree_model = DecisionTreeClassifier(     random_state=42 
-) 
-knn_model=KNeighborsClassifier(     n_neighbors=5 
-) 
+logistic_model = LogisticRegression(max_iter=200) 
+decision_tree_model = DecisionTreeClassifier(random_state=42) 
+knn_model=KNeighborsClassifier(n_neighbors=5) 
 print("Three models created successfully.") 
 Output 
 Three models created successfully. 
@@ -188,9 +190,9 @@ The same training and testing datasets are used for all three models to ensure a
 ### 6.7 Training the Models 
 After creating the models, they are trained using the training dataset. 
 Program 
-# Train Logistic Regression logistic_model.fit(X_train_scaled, y_train) 
-# Train Decision Tree decision_tree_model.fit(X_train, y_train) 
-# Train KNN knn_model.fit(X_train_scaled, y_train) print("All three models trained successfully.") 
+Train Logistic Regression logistic_model.fit(X_train_scaled, y_train) 
+Train Decision Tree decision_tree_model.fit(X_train, y_train) 
+Train KNN knn_model.fit(X_train_scaled, y_train) print("All three models trained successfully.") 
 Output 
 All three models trained successfully. 
 Explanation 
@@ -198,7 +200,10 @@ The fit() method is used to train each model.
 Logistic Regression learns the relationship between the standardized input features and the flower species. The Decision Tree learns a series of decision rules based on feature values. KNN stores the training observations and uses their distances when making predictions. 
 ### 6.8 Making Predictions 
 After training, each model is used to predict the classes of the 30 unseen testing observations. Program 
-logistic_pred = logistic_model.predict(X_test_scaled) decision_tree_pred = decision_tree_model.predict(X_test) knn_pred = knn_model.predict(X_test_scaled) print("Predictions generated successfully.") 
+logistic_pred = logistic_model.predict(X_test_scaled) 
+decision_tree_pred = decision_tree_model.predict(X_test) 
+knn_pred = knn_model.predict(X_test_scaled) 
+print("Predictions generated successfully.") 
 Output 
 Predictions generated successfully. 
 Explanation 
@@ -219,16 +224,10 @@ results = [] models = {
  "Decision Tree": decision_tree_pred, 
     "KNN": knn_pred 
 } for model_name, predictions in models.items(): 
-    accuracy = accuracy_score( 
-        y_test, 
-predictions 
-    ) 
-    precision = precision_score( y_test,         predictions, average="weighted" 
-    ) 
-    recall = recall_score(         y_test,         predictions,         average="weighted" 
-    ) 
-    f1 = f1_score(         y_test,         predictions,         average="weighted" 
-    ) 
+    accuracy = accuracy_score(y_test, predictions) 
+    precision = precision_score( y_test, predictions, average="weighted") 
+    recall = recall_score(y_test, predictions, average="weighted") 
+    f1 = f1_score(y_test, predictions, average="weighted") 
     results.append([         model_name,         accuracy,         precision,         recall, 
         f1 
     ]) 
@@ -267,26 +266,29 @@ The results indicate that KNN is the best-performing algorithm among the three m
 ### 8.1 Accuracy Comparison Graph 
 A bar chart can be used to visually compare the accuracy of the three algorithms. 
 Program 
-plt.figure(figsize=(8, 5)) plt.bar(     results_df["Algorithm"],     results_df["Accuracy"] 
-) plt.title(
-    "Accuracy Comparison of Machine Learning Algorithms" 
-) 
-plt.xlabel("Machine Learning Algorithm") plt.ylabel("Accuracy (%)") plt.ylim(80, 105) plt.xticks(rotation=15) plt.show() 
+plt.figure(figsize=(8, 5)) 
+plt.bar(results_df["Algorithm"], results_df["Accuracy"]) 
+plt.title("Accuracy Comparison of Machine Learning Algorithms") 
+plt.xlabel("Machine Learning Algorithm") 
+plt.ylabel("Accuracy (%)") 
+plt.ylim(80, 105) 
+plt.xticks(rotation=15) 
+plt.show() 
 Result 
 The graph contains three bars representing Logistic Regression, Decision Tree, and KNN. 
 The KNN bar is expected to be the highest because it achieves the highest accuracy among the three algorithms. 
 ### 8.2 Confusion Matrix 
 A confusion matrix is used to understand the number of correct and incorrect predictions made by each model. 
 Program 
-cm_logistic = confusion_matrix( 
-    y_test,     logistic_pred ) 
-cm_tree = confusion_matrix( 
-    y_test,     decision_tree_pred 
-) 
-cm_knn = confusion_matrix( 
-    y_test,     knn_pred 
-) 
-print("Logistic Regression Confusion Matrix:") print(cm_logistic) print("\nDecision Tree Confusion Matrix:") print(cm_tree) print("\nKNN Confusion Matrix:") print(cm_knn) 
+cm_logistic = confusion_matrix(y_test, logistic_pred) 
+cm_tree = confusion_matrix(y_test, decision_tree_pred) 
+cm_knn = confusion_matrix(y_test, knn_pred) 
+print("Logistic Regression Confusion Matrix:") 
+print(cm_logistic) 
+print("\nDecision Tree Confusion Matrix:") 
+print(cm_tree) 
+print("\nKNN Confusion Matrix:") 
+print(cm_knn) 
 Output 
 Logistic Regression Confusion Matrix: 
 [[10  0  0] 
@@ -310,13 +312,16 @@ This indicates that all 30 testing observations were correctly classified.
 There are 10 Setosa observations, 10 Versicolor observations, and 10 Virginica observations in the testing dataset. KNN correctly classifies all of them in this particular experiment. 
 ### 8.3 Classification report  
 A classification report provides precision, recall, F1-score, and support for each individual class. Program 
-print("========== LOGISTIC REGRESSION ==========") print(     classification_report(         y_test,         logistic_pred,         target_names=iris.target_names 
+print("========== LOGISTIC REGRESSION ==========") 
+print(     classification_report(         y_test,         logistic_pred,         target_names=iris.target_names 
     ) 
 ) 
-print("========== DECISION TREE ==========") print(     classification_report(         y_test,         decision_tree_pred,         target_names=iris.target_names 
+print("========== DECISION TREE ==========") 
+print(     classification_report(         y_test,         decision_tree_pred,         target_names=iris.target_names 
     ) 
 ) 
-print("========== KNN ==========") print(     classification_report(         y_test,         knn_pred,         target_names=iris.target_names 
+print("========== KNN ==========") 
+print(     classification_report(         y_test,         knn_pred,         target_names=iris.target_names 
     ) 
 ) 
 Output for KNN 
