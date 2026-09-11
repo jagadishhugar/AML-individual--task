@@ -134,16 +134,30 @@ The following algorithms were implemented:
 3.	K-Nearest Neighbors (KNN) 
 The Iris dataset was obtained directly from the Scikit-learn library. 
 ### 6.2 Importing Required Libraries 
-The first step is to import all the required Python libraries and machine learning functions. Program 
-import pandas as pd import matplotlib.pyplot as plt from sklearn.datasets import load_iris from sklearn.model_selection import train_test_split from sklearn.preprocessing import StandardScaler from sklearn.linear_model import LogisticRegression from sklearn.tree import DecisionTreeClassifier from sklearn.neighbors import KNeighborsClassifier from sklearn.metrics import (     accuracy_score,     precision_score,     recall_score,     f1_score,     confusion_matrix,     classification_report 
-) 
+The first step is to import all the required Python libraries and machine learning functions. 
+Program 
+import pandas as pd 
+import matplotlib.pyplot as plt 
+from sklearn.datasets import load_iris 
+from sklearn.model_selection import train_test_split 
+from sklearn.preprocessing import StandardScaler 
+from sklearn.linear_model import LogisticRegression 
+from sklearn.tree import DecisionTreeClassifier 
+from sklearn.neighbors import KNeighborsClassifier 
+from sklearn.metrics import (accuracy_score, precision_score, recall_score, f1_score, confusion_matrix, classification_report) 
 Explanation 
 The load_iris() function is used to load the Iris dataset. The train_test_split() function divides the dataset into training and testing subsets. StandardScaler is used to standardize the numerical features. 
  
 The three machine learning algorithms are imported from Scikit-learn. The evaluation functions are imported to calculate accuracy, precision, recall, F1-score, and confusion matrices. 
 ### 6.3 Loading the Dataset 
-The Iris dataset is loaded using the load_iris() function provided by Scikit-learn. Program 
-iris = load_iris() X = iris.data y = iris.target print("Dataset Shape:", X.shape) print("Number of Classes:", len(iris.target_names)) print("Classes:", iris.target_names) 
+The Iris dataset is loaded using the load_iris() function provided by Scikit-learn. 
+Program 
+iris = load_iris() 
+X = iris.data 
+y = iris.target 
+print("Dataset Shape:", X.shape) 
+print("Number of Classes:", len(iris.target_names)) 
+print("Classes:", iris.target_names) 
 Output 
 Dataset Shape: (150, 4) 
 Number of Classes: 3 
@@ -157,7 +171,8 @@ Program
 X_train, X_test, y_train, y_test = train_test_split( X, y, 
     test_size=0.20,    random_state=42,     stratify=y 
 ) 
-print("Training samples:", X_train.shape[0]) print("Testing samples:", X_test.shape[0]) 
+print("Training samples:", X_train.shape[0]) 
+print("Testing samples:", X_test.shape[0]) 
 Output 
 Training samples: 120 
 Testing samples: 30 
