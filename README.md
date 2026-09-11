@@ -7,7 +7,7 @@ The performance of each algorithm is evaluated using suitable classification met
 This study demonstrates how different machine learning algorithms can be applied to the same dataset and how their performances can be evaluated objectively. The project also provides practical understanding of the complete machine learning workflow, from data collection and preprocessing to model training, evaluation, comparison, and selection of the best-performing algorithm. 
   
 ## 1. INTRODUCTION 
-### Machine Learning (ML) is a field of Artificial Intelligence that focuses on developing algorithms and statistical techniques that allow computers to learn from data and make predictions or decisions. Instead of programming a computer with a fixed set of rules, machine learning algorithms identify patterns and relationships in existing data and use those patterns to make predictions on new, unseen data. 
+Machine Learning (ML) is a field of Artificial Intelligence that focuses on developing algorithms and statistical techniques that allow computers to learn from data and make predictions or decisions. Instead of programming a computer with a fixed set of rules, machine learning algorithms identify patterns and relationships in existing data and use those patterns to make predictions on new, unseen data. 
 Machine learning is widely used in many real-world applications. Examples include email spam detection, medical diagnosis, customer segmentation, recommendation systems, fraud detection, image recognition, speech recognition, and weather prediction. Depending on the nature of the problem and the availability of labelled data, machine learning can be broadly divided into supervised learning, unsupervised learning, and reinforcement learning. 
 This project focuses on supervised machine learning, specifically classification. In classification problems, the target variable consists of predefined categories or classes. The algorithm learns from examples where both input features and their corresponding class labels are known. Once the model has learned the relationship between the input and output, it can classify new observations. 
 For this project, the Iris flower dataset has been selected. The Iris dataset is one of the most commonly used datasets for learning and demonstrating classification techniques. It contains measurements of flowers from three different iris species. The four input variables are sepal length, sepal width, petal length, and petal width. The target variable is the species of the flower. 
@@ -17,7 +17,7 @@ Finally, the models are evaluated using accuracy, precision, recall, F1-score, a
 The project therefore provides a complete practical demonstration of how machine learning can be used to solve a classification problem and how different algorithms can be compared using quantitative evaluation measures. 
  
 ## 2. DATASET DESCRIPTION 
-### The dataset selected for this project is the Iris Flower Dataset. It is a small and well-structured dataset commonly used for demonstrating classification algorithms, statistical analysis, and data visualization techniques. 
+The dataset selected for this project is the Iris Flower Dataset. It is a small and well-structured dataset commonly used for demonstrating classification algorithms, statistical analysis, and data visualization techniques. 
 The dataset contains 150 observations representing iris flowers. These observations belong to three different species: 
 1.	Iris-setosa 
 2.	Iris-versicolor 
@@ -43,7 +43,7 @@ For this project, the four numerical variables are selected as predictor variabl
 The Iris dataset is therefore appropriate for this individual task because it is simple enough to understand while still demonstrating the complete process of supervised machine learning classification. 
  
 ## 3. DATA PREPROCESSING 
-### Data preprocessing is an important stage in any machine learning project. The quality of the input data can significantly affect the performance of a machine learning model. Before applying classification algorithms to the Iris dataset, the data must be inspected, cleaned, transformed where necessary, and divided into suitable subsets. 
+Data preprocessing is an important stage in any machine learning project. The quality of the input data can significantly affect the performance of a machine learning model. Before applying classification algorithms to the Iris dataset, the data must be inspected, cleaned, transformed where necessary, and divided into suitable subsets. 
 The first step in preprocessing is loading the dataset into the Python environment. Libraries such as Pandas and Scikit-learn can be used for this purpose. After loading the data, the structure of the dataset is examined using functions such as head(), info(), and describe(). 
 The head() function displays the first few records and helps verify that the data has been loaded correctly. The info() function provides information about the number of observations, columns, data types, and non-null values. The describe() function provides statistical information such as mean, standard deviation, minimum value, maximum value, and quartiles. 
 The next step is to check for missing values. Missing values can cause errors or negatively affect model performance. In the standard Iris dataset, the four feature variables and target variable contain valid observations, so no major missing-value treatment is generally required. Nevertheless, checking for missing values is necessary because it is a standard part of the machine learning preprocessing workflow. 
@@ -58,7 +58,7 @@ An important principle is that the scaler should be fitted using only the traini
 Therefore, the preprocessing process consists of inspecting the data, checking missing values and duplicates, separating features and target, encoding the target if required, splitting the dataset into training and testing subsets, and scaling features where appropriate. 
  
 ## 4. EXPLORATORY DATA ANALYSIS 
-### Exploratory Data Analysis (EDA) is the process of examining a dataset to understand its structure, distributions, relationships, and important characteristics before applying machine learning algorithms. 
+Exploratory Data Analysis (EDA) is the process of examining a dataset to understand its structure, distributions, relationships, and important characteristics before applying machine learning algorithms. 
 EDA is useful because it helps identify patterns that may influence the performance of classification models. It also helps determine whether the selected features are suitable for predicting the target variable. 
 The first stage of EDA involves examining descriptive statistics. For each numerical feature, measures such as mean, median, minimum, maximum, and standard deviation can be calculated. 
 The four features of the Iris dataset have different numerical distributions. Sepal length and sepal width describe the dimensions of the sepal, while petal length and petal width describe the dimensions of the petal. 
@@ -75,7 +75,7 @@ EDA is not simply a graphical exercise. It provides useful information for selec
  
 ## 5. MACHINE LEARNING ALGORITHMS 
 ### 5.1 Logistic Regression 
-### Logistic Regression is a supervised machine learning algorithm commonly used for classification problems. Despite its name, Logistic Regression is primarily used to predict categorical outcomes rather than continuous numerical values. 
+Logistic Regression is a supervised machine learning algorithm commonly used for classification problems. Despite its name, Logistic Regression is primarily used to predict categorical outcomes rather than continuous numerical values. 
 For binary classification, Logistic Regression estimates the probability that an observation belongs to a particular class. For multi-class problems such as the Iris dataset, Logistic Regression can use approaches such as multinomial classification to predict one of multiple classes. 
 The algorithm calculates a weighted combination of the input features and transforms the result into probabilities. The class with the highest predicted probability is selected as the final prediction. 
 For the Iris dataset, the input variables are sepal length, sepal width, petal length, and petal width. Logistic Regression learns how these measurements are associated with the three flower species. 
@@ -83,7 +83,7 @@ One advantage of Logistic Regression is that it is relatively simple and computa
 The algorithm is suitable for this project because it provides a strong baseline classification model. 
 Its performance can then be compared with more flexible algorithms such as Decision Tree and KNN. 
 ### 5.2 Decision Tree 
-### A Decision Tree is a supervised machine learning algorithm that makes predictions by creating a tree-like structure of decision rules. 
+A Decision Tree is a supervised machine learning algorithm that makes predictions by creating a tree-like structure of decision rules. 
 The tree begins with a root node and repeatedly divides the dataset into smaller groups based on feature values. Each internal node represents a decision based on a feature, each branch represents an outcome of that decision, and each leaf node represents a final predicted class. 
 For example, a Decision Tree trained on the Iris dataset may learn that certain petal measurements are highly effective for distinguishing different species. 
 One major advantage of Decision Trees is their interpretability. The decision rules can be visualized and understood easily. Unlike many mathematical models, a Decision Tree can provide a straightforward explanation of how a particular prediction was reached. 
@@ -92,7 +92,7 @@ However, a major disadvantage is that a Decision Tree can overfit the training d
 To reduce overfitting, parameters such as maximum tree depth, minimum samples per leaf, and minimum samples for splitting can be controlled. 
 For this project, a Decision Tree Classifier is trained using the training portion of the Iris dataset and evaluated using the testing portion. 
 ### 5.3 K-Nearest Neighbors 
-### K-Nearest Neighbors, commonly known as KNN, is a supervised machine learning algorithm based on similarity between observations. 
+K-Nearest Neighbors, commonly known as KNN, is a supervised machine learning algorithm based on similarity between observations. 
 Unlike some algorithms that create a mathematical model during training, KNN stores the training observations and uses them when a new observation needs to be classified. 
 When a new data point is presented, KNN calculates the distance between the new observation and existing training observations. It then identifies the K nearest observations. The new observation is assigned to the class that is most common among those neighbors. 
 The value of K is an important parameter. For example, if K is set to 5, the algorithm examines the five nearest training observations and uses their classes to determine the prediction. 
@@ -103,7 +103,7 @@ However, KNN can become computationally expensive for very large datasets becaus
 For the Iris dataset, KNN is expected to provide strong classification performance because the species can be distinguished effectively using the four measurements. 
  
 ## 6. MODEL TRAINING AND IMPLEMENTATION 
-### Model training is the process in which machine learning algorithms learn patterns and relationships from the training data. 
+Model training is the process in which machine learning algorithms learn patterns and relationships from the training data. 
 After preprocessing the Iris dataset, the observations are divided into training and testing sets. The training set is used to train the three selected algorithms, while the testing set is kept separate for final evaluation. 
 The first model trained is Logistic Regression. The training features are provided to the Logistic Regression classifier along with the corresponding species labels. During training, the algorithm estimates the parameters that best separate the three classes. 
 The second model is the Decision Tree Classifier. The algorithm examines the training data and identifies feature-based rules that can divide the observations into different species. The tree continues splitting the data until suitable stopping conditions are reached. 
@@ -120,7 +120,7 @@ After all three models have been trained, their predictions can be stored separa
 The models are not necessarily expected to perform identically. Logistic Regression creates a relatively simple decision boundary, Decision Tree creates rule-based boundaries, and KNN classifies observations according to their local neighbors. 
 The training process therefore allows each algorithm to learn the classification patterns using its own mathematical approach. The testing stage then determines how well these learned patterns generalize to unseen observations. 
 ### 6.1 Software and Libraries Used 
-### The machine learning project was implemented using Python programming language. Jupyter Notebook can be used as the development environment because it allows the code, output, graphs, and explanations to be presented together. 
+The machine learning project was implemented using Python programming language. Jupyter Notebook can be used as the development environment because it allows the code, output, graphs, and explanations to be presented together. 
 The following Python libraries were used: 
 •	NumPy – for numerical operations. 
 •	Pandas – for data manipulation and analysis. 
@@ -132,7 +132,7 @@ The following algorithms were implemented:
 3.	K-Nearest Neighbors (KNN) 
 The Iris dataset was obtained directly from the Scikit-learn library. 
 ### 6.2 Importing Required Libraries 
-### The first step is to import all the required Python libraries and machine learning functions. Program 
+The first step is to import all the required Python libraries and machine learning functions. Program 
 import pandas as pd import matplotlib.pyplot as plt from sklearn.datasets import load_iris from sklearn.model_selection import train_test_split from sklearn.preprocessing import StandardScaler from sklearn.linear_model import LogisticRegression from sklearn.tree import DecisionTreeClassifier from sklearn.neighbors import KNeighborsClassifier from sklearn.metrics import (     accuracy_score,     precision_score,     recall_score,     f1_score,     confusion_matrix,     classification_report 
 ) 
 Explanation 
@@ -140,7 +140,7 @@ The load_iris() function is used to load the Iris dataset. The train_test_split(
  
 The three machine learning algorithms are imported from Scikit-learn. The evaluation functions are imported to calculate accuracy, precision, recall, F1-score, and confusion matrices. 
 ### 6.3 Loading the Dataset 
-### The Iris dataset is loaded using the load_iris() function provided by Scikit-learn. Program 
+The Iris dataset is loaded using the load_iris() function provided by Scikit-learn. Program 
 iris = load_iris() X = iris.data y = iris.target print("Dataset Shape:", X.shape) print("Number of Classes:", len(iris.target_names)) print("Classes:", iris.target_names) 
 Output 
 Dataset Shape: (150, 4) 
@@ -150,7 +150,7 @@ Explanation
 The output shows that the dataset contains 150 observations and 4 input features. There are three target classes: Setosa, Versicolor, and Virginica. 
 The variable X contains the four input features, while y contains the corresponding species labels. 
 ### 6.4 Splitting the Dataset 
-### The dataset is divided into training and testing datasets. In this project, 80% of the observations are used for training and 20% are used for testing. 
+The dataset is divided into training and testing datasets. In this project, 80% of the observations are used for training and 20% are used for testing. 
 Program 
 X_train, X_test, y_train, y_test = train_test_split( X, y, 
     test_size=0.20,    random_state=42,     stratify=y 
@@ -163,7 +163,7 @@ Explanation
 The dataset contains 150 observations. Therefore, 120 observations are used to train the machine learning models and 30 observations are reserved for testing. 
 The random_state=42 ensures that the same train-test split can be reproduced when the program is executed again. The stratify=y parameter maintains a similar class distribution in both training and testing datasets. 
 ### 6.5 Feature Scaling 
-### Feature scaling is applied to the data used by Logistic Regression and KNN. Standardization transforms the features so that they have a similar scale. 
+Feature scaling is applied to the data used by Logistic Regression and KNN. Standardization transforms the features so that they have a similar scale. 
 Program 
 scaler = StandardScaler() 
 X_train_scaled = scaler.fit_transform(X_train) X_test_scaled = scaler.transform(X_test) print("Feature scaling completed successfully.") 
@@ -173,7 +173,7 @@ Explanation
 The StandardScaler standardizes the feature values using the mean and standard deviation of the training data. 
 Scaling is especially important for KNN because KNN calculates distances between observations. Logistic Regression can also benefit from standardized features. Decision Tree does not require feature scaling, so the original training and testing values are used for the Decision Tree model. 
 ### 6.6 Creating the Machine Learning Models 
-### Three classification algorithms are created for the experiment. 
+Three classification algorithms are created for the experiment. 
 Program 
 logistic_model = LogisticRegression(max_iter=200) decision_tree_model = DecisionTreeClassifier(     random_state=42 
 ) 
@@ -186,7 +186,7 @@ Explanation
 The first model is Logistic Regression. The second model is a Decision Tree Classifier. The third model is KNN with five nearest neighbors. 
 The same training and testing datasets are used for all three models to ensure a fair comparison. 
 ### 6.7 Training the Models 
-### After creating the models, they are trained using the training dataset. 
+After creating the models, they are trained using the training dataset. 
 Program 
 # Train Logistic Regression logistic_model.fit(X_train_scaled, y_train) 
 # Train Decision Tree decision_tree_model.fit(X_train, y_train) 
@@ -197,7 +197,7 @@ Explanation
 The fit() method is used to train each model. 
 Logistic Regression learns the relationship between the standardized input features and the flower species. The Decision Tree learns a series of decision rules based on feature values. KNN stores the training observations and uses their distances when making predictions. 
 ### 6.8 Making Predictions 
-### After training, each model is used to predict the classes of the 30 unseen testing observations. Program 
+After training, each model is used to predict the classes of the 30 unseen testing observations. Program 
 logistic_pred = logistic_model.predict(X_test_scaled) decision_tree_pred = decision_tree_model.predict(X_test) knn_pred = knn_model.predict(X_test_scaled) print("Predictions generated successfully.") 
 Output 
 Predictions generated successfully. 
@@ -206,7 +206,7 @@ The predict() function generates the predicted species for each observation in t
 The predictions from the three models are stored separately in the variables logistic_pred, decision_tree_pred, and knn_pred. 
  
 ## 7. EVALUATION OF MACHINE LEARNING MODELS 
-### The trained models are evaluated using four major classification metrics: 
+The trained models are evaluated using four major classification metrics: 
 •	Accuracy 
 •	Precision 
 •	Recall 
@@ -214,7 +214,7 @@ The predictions from the three models are stored separately in the variables log
 These metrics provide a comprehensive understanding of the performance of each classification algorithm. 
 
 ### 7.1 Calculating Evaluation Metrics Program 
-### results = [] models = { 
+results = [] models = { 
     "Logistic Regression": logistic_pred, 
  "Decision Tree": decision_tree_pred, 
     "KNN": knn_pred 
@@ -249,14 +249,14 @@ results_df[
 print(results_df.round(2)) 
  
 ## 8. PERFORMANCE COMPARISON 
-### The performance of the three algorithms is compared using accuracy, precision, recall, and F1score. 
+The performance of the three algorithms is compared using accuracy, precision, recall, and F1score. 
 Output 
 A typical output for the specified train-test split is: 
 Performance Comparison Table 
-Algorithm 	Accuracy 	Precision 	Recall 	F1-Score
-Logistic Regression 	96.67% 	96.83% 	96.67% 	96.67% 
-Decision Tree 	 93.33% 	 94.44%  93.33%  93.33% 
-KNN 	100.00% 	100.00% 	100.00% 	100.00% 
+Algorithm 	          Accuracy 	Precision 	Recall 	F1-Score
+Logistic Regression 	  96.67%   	96.83%   	96.67%   96.67% 
+Decision Tree 	        93.33%    94.44%    93.33%   93.33% 
+KNN 	                 100.00%   100.00% 	 100.00% 	100.00% 
  
 Discussion 
 The comparison shows that all three machine learning algorithms perform well on the Iris dataset. Logistic Regression achieves an accuracy of 96.67%, while Decision Tree achieves 93.33%. KNN provides the highest accuracy at 100% for the selected test set. 
@@ -265,7 +265,7 @@ Decision Tree also performs well, although its accuracy is slightly lower. The D
 KNN achieves the highest performance. The algorithm classifies an observation according to the classes of its nearest neighbors. Since flowers belonging to the same species tend to have similar measurements, KNN is highly effective for this dataset. 
 The results indicate that KNN is the best-performing algorithm among the three models for this particular experimental setup. 
 ### 8.1 Accuracy Comparison Graph 
-### A bar chart can be used to visually compare the accuracy of the three algorithms. 
+A bar chart can be used to visually compare the accuracy of the three algorithms. 
 Program 
 plt.figure(figsize=(8, 5)) plt.bar(     results_df["Algorithm"],     results_df["Accuracy"] 
 ) plt.title(
@@ -276,7 +276,7 @@ Result
 The graph contains three bars representing Logistic Regression, Decision Tree, and KNN. 
 The KNN bar is expected to be the highest because it achieves the highest accuracy among the three algorithms. 
 ### 8.2 Confusion Matrix 
-### A confusion matrix is used to understand the number of correct and incorrect predictions made by each model. 
+A confusion matrix is used to understand the number of correct and incorrect predictions made by each model. 
 Program 
 cm_logistic = confusion_matrix( 
     y_test,     logistic_pred ) 
@@ -309,7 +309,7 @@ For KNN, the confusion matrix is:
 This indicates that all 30 testing observations were correctly classified. 
 There are 10 Setosa observations, 10 Versicolor observations, and 10 Virginica observations in the testing dataset. KNN correctly classifies all of them in this particular experiment. 
 ### 8.3 Classification report  
-### A classification report provides precision, recall, F1-score, and support for each individual class. Program 
+A classification report provides precision, recall, F1-score, and support for each individual class. Program 
 print("========== LOGISTIC REGRESSION ==========") print(     classification_report(         y_test,         logistic_pred,         target_names=iris.target_names 
     ) 
 ) 
@@ -333,7 +333,7 @@ This result indicates that KNN correctly classified all three species in the tes
 Overall, the experiment successfully demonstrates the application and comparison of three classification algorithms. The models show that machine learning can effectively distinguish Iris flower species using simple physical measurements. 
  
 ## 9. BEST-PERFORMING ALGORITHM 
-### Based on the evaluation results, the algorithm with the highest overall performance can be identified as the best-performing model for the Iris classification task. 
+Based on the evaluation results, the algorithm with the highest overall performance can be identified as the best-performing model for the Iris classification task. 
 Using the example results presented in this report, K-Nearest Neighbors (KNN) achieves the highest performance, with an accuracy of approximately 100% on the selected test set. Its precision, recall, and F1-score are also approximately 100%. 
 KNN performs well because it classifies a new flower based on the characteristics of nearby flowers in the feature space. The Iris dataset contains relatively well-separated groups, particularly for Iris-setosa. Therefore, a new observation is often surrounded by observations belonging to the same species. 
 However, KNN is not automatically the best algorithm for every application. Its performance depends on the value of K, the distance metric, feature scaling, and the structure of the dataset. 
@@ -353,7 +353,7 @@ The best-performing algorithm should therefore be identified based on the actual
 For the example experiment in this report, KNN is selected as the best-performing algorithm because it provides the highest overall classification performance. The model successfully uses the similarity between flower measurements to distinguish the three Iris species. 
  
 ## 10. CONCLUSION 
-### This project presented a complete machine learning classification workflow using the Iris flower dataset. The main objective was to apply three different machine learning algorithms, compare their performance using suitable evaluation metrics, and identify the best-performing algorithm. 
+This project presented a complete machine learning classification workflow using the Iris flower dataset. The main objective was to apply three different machine learning algorithms, compare their performance using suitable evaluation metrics, and identify the best-performing algorithm. 
 The Iris dataset contains 150 observations belonging to three flower species: Iris-setosa, Iris-versicolor, and Iris-virginica. Four numerical measurements—sepal length, sepal width, petal length, and petal width—were used as input features for classification. 
 The data preprocessing stage involved examining the dataset, checking for missing values and duplicates, separating the independent and dependent variables, encoding the target where required, and splitting the dataset into training and testing subsets. Feature scaling was applied where appropriate, particularly because KNN relies on distance calculations. 
 Exploratory Data Analysis provided useful insights into the dataset. The visualizations demonstrated that the three species have different feature distributions. In particular, petal length and petal width were found to be useful for distinguishing the species. The dataset was also found to be balanced, with 50 observations from each class. 
@@ -367,7 +367,7 @@ As future work, the project could be extended by using cross-validation, hyperpa
 Overall, the experiment successfully demonstrates how supervised machine learning can be used to classify Iris flower species and how different algorithms can be systematically compared to select an appropriate model. 
  
 ## 11. REFERENCES 
-### The following references were used as conceptual and technical resources for understanding the dataset, machine learning algorithms, preprocessing techniques, and evaluation metrics. 
+The following references were used as conceptual and technical resources for understanding the dataset, machine learning algorithms, preprocessing techniques, and evaluation metrics. 
 Books 
 1.	Géron, A. (2022). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow. O'Reilly Media. 
 2.	James, G., Witten, D., Hastie, T., & Tibshirani, R. (2021). An Introduction to Statistical Learning: with Applications in R. Springer. 
